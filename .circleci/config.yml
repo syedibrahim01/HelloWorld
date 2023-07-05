@@ -28,6 +28,13 @@ jobs:
             docker build -t your-dockerhub-username/helloworld:latest .
             docker login -u your-dockerhub-username -p $DOCKERHUB_PASSWORD
             docker push your-dockerhub-username/helloworld:latest
+    steps:
+      - checkout
+      - run:
+          name: Extract Zip File
+          command: |
+            mkdir extracted
+            unzip your-zip-file.zip -d extracted
  
 
   test:
