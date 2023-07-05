@@ -3,10 +3,15 @@ version: 2.1
 workflows:
   my-workflow:
     jobs:
-      - build:
-          context:
-            - build-env-vars
-            - docker-hub-creds
+      requires:
+            - build 
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: main
+          
 
 jobs:
   build:
