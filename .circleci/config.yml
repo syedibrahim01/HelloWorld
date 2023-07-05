@@ -4,31 +4,15 @@ jobs:
   build:
     docker:
       - image: helloworld
-    steps:
-      - checkout
-      - run: Dockerfile
-  test:
-    docker:
-      - image: helloworld
-    steps:
-      - checkout
-      - run: helloworld
-  deploy:
-    docker:
-      - image: helloworld
-    steps:
-      - run: echo "Deploying to production"
+        auth:
+          username: mydockerhub-user  # can specify string literal values
+          password: $DOCKERHUB_PASSWORD  # or project environment variable reference
 
 workflows:
-  build_and_test_deploy:
+  my-workflow:
     jobs:
-      - build
-      - test:
-          requires:
-            - build 
-      - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: main
+      - build:
+          context:
+            - build-env-vars
+            - docker-hub-creds
+
