@@ -15,7 +15,7 @@ workflows:
               only: main
 
 jobs:
-  build:
+   build:
     docker:
       - image: docker:stable
     steps:
@@ -34,7 +34,7 @@ jobs:
           name: Extract Zip File
           command: |
             mkdir extracted
-            unzip your-zip-file.zip -d extracted
+            unzip hello-world.zip -d extracted
  
 
   test:
