@@ -1,13 +1,5 @@
 version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: helloworld
-        auth:
-          username: mydockerhub-user  # can specify string literal values
-          password: $DOCKERHUB_PASSWORD  # or project environment variable reference
-
 workflows:
   my-workflow:
     jobs:
@@ -15,7 +7,20 @@ workflows:
           context:
             - build-env-vars
             - docker-hub-creds
-          filters:
-            branches:
-              only: main
+
+jobs:
+  build:
+    docker:
+      - image: acme-private/private-image:321
+        auth:
+          username: mydockerhub-user  # can specify string literal values
+          password: ENV NODE_ENV=production # or project environment variable reference
+          working_directory: usr/src/app
+    steps:
+      - checkout
+      - run: Dockerfile
+
+
+
+
 
