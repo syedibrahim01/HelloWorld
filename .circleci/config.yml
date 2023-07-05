@@ -19,7 +19,6 @@ jobs:
     docker:
       - image: helloworld
     steps:
-      - checkout
       - run: Dockerfile
       auth:
           username: mydockerhub-user  # can specify string literal values
