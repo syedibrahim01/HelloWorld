@@ -20,9 +20,9 @@ jobs:
       - image: helloworld
     steps:
       - run: Dockerfile
-      auth:
-          username: mydockerhub-user  # can specify string literal values
-          password: ENV NODE_ENV=production # or project environment variable reference    
+#     auth:
+#          username: mydockerhub-user  # can specify string literal values
+#          password: ENV NODE_ENV=production # or project environment variable reference    
 
   test:
     docker:
