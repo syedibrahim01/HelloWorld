@@ -11,15 +11,25 @@ workflows:
 jobs:
   build:
     docker:
-      - image: acme-private/private-image:321
-        auth:
-          username: mydockerhub-user  # can specify string literal values
-          password: ENV NODE_ENV=production # or project environment variable reference
-          working_directory: usr/src/app
+      - image: helloworld
     steps:
       - checkout
       - run: Dockerfile
+      auth:
+          username: mydockerhub-user  # can specify string literal values
+          password: ENV NODE_ENV=production # or project environment variable reference    
 
+  test:
+    docker:
+      - image: helloworld
+    steps:
+      - checkout
+      - run: Dockerfile
+  deploy:
+    docker:
+      - image: helloworld
+    steps:
+      - run: echo "Deploying to production server"
 
 
 
