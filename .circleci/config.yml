@@ -17,12 +17,18 @@ workflows:
 jobs:
   build:
     docker:
-      - image: helloworld
+      - image: docker:stable
     steps:
-      - run: Dockerfile
-#     auth:
-#          username: mydockerhub-user  # can specify string literal values
-#          password: ENV NODE_ENV=production # or project environment variable reference    
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build and Push Docker Image
+          command: |
+            docker build -t your-dockerhub-username/helloworld:latest .
+            docker login -u your-dockerhub-username -p $DOCKERHUB_PASSWORD
+            docker push your-dockerhub-username/helloworld:latest
+ 
 
   test:
     docker:
@@ -34,7 +40,7 @@ jobs:
     docker:
       - image: helloworld
     steps:
-      - run: echo "Deploying to production server"
+      - run: echo "Hello, World!"
 
 
 
