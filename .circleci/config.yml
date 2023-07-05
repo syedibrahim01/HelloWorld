@@ -15,4 +15,7 @@ workflows:
           context:
             - build-env-vars
             - docker-hub-creds
+          filters:
+            branches:
+              only: main
 
