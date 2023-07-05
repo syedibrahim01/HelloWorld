@@ -1,5 +1,4 @@
 version: 2.1
-
 workflows:
   build_and_test_deploy:
     jobs:
@@ -36,19 +35,6 @@ jobs:
             mkdir extracted
             unzip hello-world.zip -d extracted
  
-
-  test:
-    docker:
-      - image: helloworld
-    steps:
-      - checkout
-      - run: Dockerfile
-  deploy:
-    docker:
-      - image: helloworld
-    steps:
-      - run: echo "Hello, World!"
-
 
 
 
