@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # Run a shell command
-RUN /bin/sh -c build
+RUN /bin/sh -c npm run build
 
 EXPOSE 3000
 USER node
