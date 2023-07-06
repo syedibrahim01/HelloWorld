@@ -31,7 +31,7 @@ jobs:
             docker build -t your-dockerhub-username/helloworld:latest .
             docker login -u your-dockerhub-username -p $DOCKERHUB_PASSWORD
             docker push your-dockerhub-username/helloworld:latest
-     test:
+   test:
     docker:
       - image: docker:stable
     steps:
@@ -47,7 +47,7 @@ jobs:
             docker build -t your-dockerhub-username/helloworld:latest .
             docker login -u your-dockerhub-username -p $DOCKERHUB_PASSWORD
             docker push your-dockerhub-username/helloworld:latest
-  deploy:
+   deploy:
     docker:
       - image: docker:stable
     steps:
