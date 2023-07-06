@@ -1,16 +1,16 @@
 version: 2.1
 workflows:
   version: 2
-  build-and-deploy:
+  build-and-test-deploy:
     jobs:
       - build
-      - deploy:
+      - test:
           requires:
             - build
           filters:
             branches:
               only: main
-
+        
 jobs:
    build:
     docker:
