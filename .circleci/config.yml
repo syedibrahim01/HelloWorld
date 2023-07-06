@@ -31,6 +31,27 @@ jobs:
             docker build -t your-dockerhub-username/helloworld:latest .
             docker login -u your-dockerhub-username -p $DOCKERHUB_PASSWORD
             docker push your-dockerhub-username/helloworld:latest
+     test:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build and Push Docker Image
+          command: |
+           mkdir extracted
+            unzip hello-world.zip -d extracted
+
+            docker build -t your-dockerhub-username/helloworld:latest .
+            docker login -u your-dockerhub-username -p $DOCKERHUB_PASSWORD
+            docker push your-dockerhub-username/helloworld:latest
+  deploy:
+    docker:
+      - image: docker:stable
+    steps:
+      - run: echo "Deploying to production server"
    
  
 
