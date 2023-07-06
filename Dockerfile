@@ -8,21 +8,21 @@ COPY . .
 RUN npm install
 
 # Install Next.js globally
-RUN npm install -g next
+# RUN npm install -g next
 
 # RUN npm run build
-# RUN/bin/sh -c npm run build
+RUN /bin/sh -c npm run build
 
-FROM <base-image>
+# FROM <base-image>
 
 # Set the working directory
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/app
 
 # Copy files to the working directory
-COPY . /usr/src/app
+# COPY . /usr/src/app
 
 # Run a shell command
-RUN /bin/sh -c npm run build
+# RUN /bin/sh -c npm run build
 
 EXPOSE 3000
 USER node
