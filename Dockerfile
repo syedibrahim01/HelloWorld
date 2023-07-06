@@ -10,7 +10,8 @@ RUN npm install
 # Install Next.js globally
 RUN npm install -g next
 
-RUN npm run build
+# RUN npm run build
+RUN/bin/sh -c npm run build
 EXPOSE 3000
 USER node
 CMD ["npm", "start"]
